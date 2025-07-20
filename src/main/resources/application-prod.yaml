@@ -1,11 +1,11 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres-db:5432/modern_dentistry
-    username: postgres
-    password: "012345"
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
-    # JPA properties
+
   data:
     redis:
-      host: redis-server
-      port: 6379
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT:6379}
