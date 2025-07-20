@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 14
+      author: rustem_huseynov
+      changes:
+        - createTable:
+            tableName: patient_examinations
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: diagnosis
+                  type: VARCHAR(255)
+
+              - column:
+                  name: tooth_number
+                  type: BIGINT
+
+              - column:
+                  name: patient_id
+                  type: BIGINT
+
+              - column:
+                  name: doctor_id
+                  type: UUID
+
+              - column:
+                  name: patient_appointment_date
+                  type: DATE

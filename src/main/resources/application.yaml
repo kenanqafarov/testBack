@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: modern-dentistry
+    jwt:
+      secret-key: ac8b79032c726ff4f955b6309340ae7d220265a78aac8e1ae69d090cc347512d2bd737d46e5cfabab3d04b1277d309afd9864941d2d6995bd0e6745e28c6d716a78fff97d3855cf9c6d28880002e40874856020a8cf95fad37aedaf86f4d1ccbd352a57cf10be4f77924f9828f025f4da26417f930b87cfcf9c869aa8cd11f0bf1a73bdd32170ab09c9ea1f8e62e747b1beb997e1d777265858087e63835795c79a7a697bbf9bda432bb68807bf109830ccfa56a353b12915a578f2f038aa2f74803f413add1506ca27b0af16b8586d4b04cff12de6b6193bff4c98bc24f5b67f8650637ebef22218ae4da96b0a449aa035bfcb5b2d2de828dbef0fd4904d137
+      expiration: 6000000 # 1 minutes
+      refresh-token:
+        expiration: 604800000 # 7 days
+  jpa:
+    hibernate:
+      ddl-auto: none # When you launch the application for the first time - switch "none" at "create"
+    show-sql: true
+    generate-ddl: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    #  mail:
+    #    host: smtp.gmail.com
+    #    port: 587
+    #    username: ${MAIL_USERNAME}
+    #    password: ${MAIL_PASSWORD}
+    #    properties:
+    #      mail:
+    #        smtp:
+    #          auth: true
+    #          starttls:
+    #            enable: true
+
+server:
+  port: 5555
+  address: 0.0.0.0

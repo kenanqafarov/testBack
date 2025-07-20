@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 28
+      author: rustem_huseynov
+      changes:
+        - createTable:
+            tableName: warehouse_receipts
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: date
+                  type: DATE
+
+              - column:
+                  name: time
+                  type: TIME
+
+              - column:
+                  name: room
+                  type: VARCHAR(255)
+
+              - column:
+                  name: person_who_placed_order
+                  type: VARCHAR(255)
+
+              - column:
+                  name: order_quantity
+                  type: BIGINT
+
+              - column:
+                  name: send_quantity
+                  type: BIGINT
+
+              - column:
+                  name: pending_status
+                  type: VARCHAR(255)
+
+              - column:
+                  name: group_id
+                  type: VARCHAR(255)

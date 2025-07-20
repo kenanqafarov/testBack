@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: 26
+      author: rustem_huseynov
+      changes:
+        - createTable:
+            tableName: warehouse_removal
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: date
+                  type: DATE
+
+              - column:
+                  name: time
+                  type: TIME
+
+              - column:
+                  name: room
+                  type: VARCHAR(255)
+
+              - column:
+                  name: person_who_placed_order
+                  type: VARCHAR(255)
+
+              - column:
+                  name: order_from_warehouse_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: number
+                  type: INTEGER
+
+              - column:
+                  name: send_amount
+                  type: BIGINT
+
+              - column:
+                  name: order_amount
+                  type: BIGINT
+
+              - column:
+                  name: remaining_amount
+                  type: BIGINT
+
+        - addForeignKeyConstraint:
+            baseTableName: warehouse_removal
+            baseColumnNames: order_from_warehouse_id
+            referencedTableName: order_from_warehouse
+            referencedColumnNames: id
+            constraintName: fk_removal_order
+            onDelete: SET NULL

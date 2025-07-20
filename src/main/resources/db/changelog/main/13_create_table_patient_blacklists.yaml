@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 13
+      author: rustem_huseynov
+      changes:
+        - createTable:
+            tableName: patient_blacklists
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: created_date
+                  type: DATE
+
+              - column:
+                  name: blacklist_result_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: patient_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+
+        - addForeignKeyConstraint:
+            baseTableName: patient_blacklists
+            baseColumnNames: blacklist_result_id
+            referencedTableName: blacklist_results
+            referencedColumnNames: id
+            constraintName: fk_patient_blacklist_blacklist_result
+            onDelete: SET NULL
+
+        - addForeignKeyConstraint:
+            baseTableName: patient_blacklists
+            baseColumnNames: patient_id
+            referencedTableName: patients
+            referencedColumnNames: id
+            constraintName: fk_patient_blacklist_patient
+            onDelete: CASCADE

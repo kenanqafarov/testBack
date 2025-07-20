@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: 04
+      author: rustem_huseynov
+      changes:
+        - createTable:
+            tableName: workers_work_schedule
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: week_day
+                  type: VARCHAR(255)
+
+              - column:
+                  name: worker_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: room
+                  type: VARCHAR(255)
+
+              - column:
+                  name: start_time
+                  type: TIME
+
+              - column:
+                  name: finish_time
+                  type: TIME
+
+        - addForeignKeyConstraint:
+            baseTableName: workers_work_schedule
+            baseColumnNames: worker_id
+            referencedTableName: base_users
+            referencedColumnNames: id
+            constraintName: fk_worker_user
+            onDelete: CASCADE

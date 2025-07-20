@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 08
+      author: rustem_huseynov
+      changes:
+        - createTable:
+            tableName: admins
+            columns:
+              - column:
+                  name: admin_id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: degree
+                  type: VARCHAR(255)
+              - column:
+                  name: phone_2
+                  type: VARCHAR(255)
+              - column:
+                  name: phone_3
+                  type: VARCHAR(255)
+              - column:
+                  name: home_phone
+                  type: VARCHAR(255)
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+              - column:
+                  name: experience
+                  type: INTEGER
+
+        - addForeignKeyConstraint:
+            baseTableName: admins
+            baseColumnNames: admin_id
+            referencedTableName: base_users
+            referencedColumnNames: id
+            constraintName: fk_admins_baseuser
+            onDelete: CASCADE
+

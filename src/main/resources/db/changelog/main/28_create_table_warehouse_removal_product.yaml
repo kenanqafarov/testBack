@@ -1,0 +1,99 @@
+databaseChangeLog:
+  - changeSet:
+      id: 27
+      author: rustem_huseynov
+      changes:
+        - createTable:
+            tableName: warehouse_removal_product
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: date
+                  type: DATE
+
+              - column:
+                  name: time
+                  type: TIME
+
+              - column:
+                  name: category_id
+                  type: BIGINT
+
+              - column:
+                  name: product_id
+                  type: BIGINT
+
+              - column:
+                  name: current_amount
+                  type: BIGINT
+
+              - column:
+                  name: order_amount
+                  type: BIGINT
+
+              - column:
+                  name: send_amount
+                  type: BIGINT
+
+              - column:
+                  name: remaining_amount
+                  type: BIGINT
+
+              - column:
+                  name: product_name
+                  type: VARCHAR(255)
+
+              - column:
+                  name: category_name
+                  type: VARCHAR(255)
+
+              - column:
+                  name: product_description
+                  type: VARCHAR(255)
+
+              - column:
+                  name: pending_status
+                  type: VARCHAR(255)
+
+              - column:
+                  name: number
+                  type: INTEGER
+
+              - column:
+                  name: group_id
+                  type: VARCHAR(255)
+
+              - column:
+                  name: order_from_warehouse_product_id
+                  type: BIGINT
+
+              - column:
+                  name: warehouse_removal_id
+                  type: BIGINT
+
+              - column:
+                  name: warehouse_receipts_id
+                  type: BIGINT
+
+        - addForeignKeyConstraint:
+            baseTableName: warehouse_removal_product
+            baseColumnNames: warehouse_removal_id
+            referencedTableName: warehouse_removal
+            referencedColumnNames: id
+            constraintName: fk_removal_product_removal
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseTableName: warehouse_removal_product
+            baseColumnNames: warehouse_receipts_id
+            referencedTableName: warehouse_receipts
+            referencedColumnNames: id
+            constraintName: fk_removal_product_receipts
+            onDelete: SET NULL

@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01
+      author: rustem_huseynov
+      preConditions:
+        - not:
+            tableExists:
+              tableName: permission
+      changes:
+        - createTable:
+            tableName: permission
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: permission_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true

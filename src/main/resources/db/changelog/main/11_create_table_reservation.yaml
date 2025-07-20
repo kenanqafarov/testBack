@@ -1,0 +1,85 @@
+databaseChangeLog:
+  - changeSet:
+      id: 11
+      author: rustam_huseynov
+      changes:
+        - createTable:
+            tableName: reservations
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: start_date
+                  type: DATE
+
+              - column:
+                  name: end_date
+                  type: DATE
+
+              - column:
+                  name: start_time
+                  type: TIME
+
+              - column:
+                  name: end_time
+                  type: TIME
+
+              - column:
+                  name: doctor_id
+                  type: UUID
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: patient_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+
+        - createTable:
+            tableName: reservation_weekdays
+            columns:
+              - column:
+                  name: reservation_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: week_day
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: reservations
+            baseColumnNames: doctor_id
+            referencedTableName: doctors
+            referencedColumnNames: doctor_id
+            constraintName: fk_reservations_doctor
+            onDelete: SET NULL
+
+        - addForeignKeyConstraint:
+            baseTableName: reservations
+            baseColumnNames: patient_id
+            referencedTableName: patients
+            referencedColumnNames: id
+            constraintName: fk_reservations_patient
+            onDelete: SET NULL
+
+        - addForeignKeyConstraint:
+            baseTableName: reservation_weekdays
+            baseColumnNames: reservation_id
+            referencedTableName: reservations
+            referencedColumnNames: id
+            constraintName: fk_reservation_weekdays_reservation
+            onDelete: CASCADE

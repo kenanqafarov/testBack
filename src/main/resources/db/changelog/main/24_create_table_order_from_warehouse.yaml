@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 24
+      author: rustem_huseynov
+      changes:
+        - createTable:
+            tableName: order_from_warehouse
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: date
+                  type: DATE
+
+              - column:
+                  name: time
+                  type: TIME
+
+              - column:
+                  name: room
+                  type: VARCHAR(255)
+
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+
+              - column:
+                  name: person_who_placed_order
+                  type: VARCHAR(255)
+
+              - column:
+                  name: number
+                  type: INTEGER
+
+              - column:
+                  name: sum_quantity
+                  type: BIGINT

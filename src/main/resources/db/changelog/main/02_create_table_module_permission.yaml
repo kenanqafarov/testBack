@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: 02
+      author: rustem_huseynov
+      changes:
+        - createTable:
+            tableName: module_permission
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: module_url
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: permission_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+
+        - addForeignKeyConstraint:
+            baseTableName: module_permission
+            baseColumnNames: permission_id
+            referencedTableName: permission
+            referencedColumnNames: id
+            constraintName: fk_module_permission_permission
+            onDelete: CASCADE
+
+        - createTable:
+            tableName: module_permission_actions
+            columns:
+              - column:
+                  name: module_permission_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: action
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: module_permission_actions
+            baseColumnNames: module_permission_id
+            referencedTableName: module_permission
+            referencedColumnNames: id
+            constraintName: fk_module_permission_actions_module_permission
+            onDelete: CASCADE

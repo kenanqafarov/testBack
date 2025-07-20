@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 12
+      author: rustem_huseynov
+      changes:
+        - createTable:
+            tableName: blacklist_results
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: status_name
+                  type: VARCHAR(255)
+
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
